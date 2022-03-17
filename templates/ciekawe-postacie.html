@@ -1,0 +1,6 @@
+{% for character, description, desc_len, words_len in chars %}
+    <h1 style="text-align:left">{{character}}</h1>
+    <p style="text-align:left">{{description}}</p>
+    <p style="text-align:left">Lenght of description: {{desc_len}}</p>
+    <p style="text-align:left">Number of words in description: {{words_len}}</p>
+{% endfor %}
