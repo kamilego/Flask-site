@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from my_programs.character import my_character, next_char, wiki_char
 from my_programs.open_files import open_func
+from my_programs.website_tabs import get_list_of_tabs
 import random
 
 app=Flask(__name__)
@@ -9,7 +10,8 @@ app=Flask(__name__)
 @app.route('/')
 def index():
     text = open('dane/xd.txt').read()
-    return render_template("index.html", text=text)
+    tabs = get_list_of_tabs("kamil-coding.pl")
+    return render_template("index.html", text=text, tabs=tabs)
 
 
 @app.route('/xd')
@@ -54,6 +56,10 @@ def ciekawe_postacie():
     char_descr = sorted(char_descr, key=lambda x: x[3], reverse=True)
     return render_template("ciekawe-postacie.html", chars=char_descr)
 
+
+@app.route('/mypage')
+def mypage(): 
+    return render_template('mypage.html')
 
 
 if __name__=="__main__":
