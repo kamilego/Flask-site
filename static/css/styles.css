@@ -29,7 +29,7 @@ a:hover {
   max-width: 800px;
   width: 85%;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 30px 0;
 }
 h1 {
   font-size: 100px;
@@ -99,8 +99,7 @@ header {
 /* Education
   --------------------------- */
 .education {
-  color: white;
-  background-image: url(../images/new_img.png);
+  background-image: url(../static/images/new_img.png);
   background-size: cover;
   background-position: bottom;
 }
