@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from my_programs.character import my_character, next_char, wiki_char
 from my_programs.open_files import open_func
 from my_programs.website_tabs import get_list_of_tabs
+from my_programs.sheet_data import save_csv_google_sheet
 import random
 
 app=Flask(__name__)
@@ -9,9 +10,10 @@ app=Flask(__name__)
 
 @app.route('/')
 def index():
-    text = open('dane/xd.txt').read()
-    tabs = get_list_of_tabs("kamil-coding.pl")
-    return render_template("index.html", text=text, tabs=tabs)
+    with open('dane/xd.txt') as f:
+        text = f.read()
+        tabs = get_list_of_tabs("kamil-coding.pl")
+        return render_template("index.html", text=text, tabs=tabs)
 
 
 @app.route('/xd')
@@ -37,7 +39,7 @@ def byczek():
 
 @app.route('/kamilek')
 def kamilek():
-    return "Kocham moją ukochaną Olę\n :**"
+    return f"Kocham moją ukochaną Olę\n :**"
 
 
 @app.route('/kochanaola', methods=['GET', 'POST'])
@@ -60,6 +62,16 @@ def ciekawe_postacie():
 @app.route('/mypage')
 def mypage(): 
     return render_template('mypage.html')
+
+
+@app.route('/interview_question')
+def interview_question():
+    df = save_csv_google_sheet()
+    random_int = random.choice(range(len(df)))
+    task = df.iloc[random_int]
+    question = task["question"]
+    answer = task["answer"]
+    return render_template("interview_question.html", question=question, answer=answer, title=f"Question no. {random_int}")
 
 
 if __name__=="__main__":

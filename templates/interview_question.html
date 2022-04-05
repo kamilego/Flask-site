@@ -1,0 +1,31 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>
+        {% block title %}{{title}}{% endblock %}
+    </title>
+</head>
+
+<body>
+    <h1 style="text-align:center">{{question}}</h1>
+    <h1 style="text-align:center;display:none"></h1>
+
+    <div style="text-align:center">
+        <button onclick="window.location.href='/interview_question'">Next question</button>
+    <div>
+    <script>
+      function showDiv() {
+        if (document.getElementById('answer').style.display!='block') {
+          document.getElementById('answer').style.display = "block";
+          document.getElementById('butt_answer').innerText = "Hide";
+        } else {
+          document.getElementById('answer').style.display = "none";
+          document.getElementById('butt_answer').innerText = "Show";
+        }
+      }
+    </script>
+    <div id="answer" style="display:none;"> {{answer}} </div>
+
+    <button id="butt_answer" name="answer" onclick="showDiv()">Show answer</button>
+    
+</html>
